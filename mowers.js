@@ -30,6 +30,25 @@ let changeMowerOrientation = (mower, val) => {
 	return mower;
 }
 
+let moveMower = (mower, lawn) => {
+	switch (mower.orientation) {
+		case 'N':
+			mower.y < (lawn.maxY) ? mower.y += 1 : null;
+			break;
+		case 'E':
+			mower.x < (lawn.maxX) ? mower.x += 1 : null;
+			break;
+		case 'S':
+			mower.y > 0 ? mower.y -= 1 : null;
+			break;
+		case 'W':
+			mower.x > 0 ? mower.x -= 1 : null;
+			break;
+	}
+
+	return mower;
+}
+
 fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
   if (!err) {
   	newFile = data.split('\n');
