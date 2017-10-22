@@ -49,6 +49,20 @@ let moveMower = (mower, lawn) => {
 	return mower;
 }
 
+let instructMower = (mower, lawn, instructions) => {
+	instructions.forEach( i => {
+		if ( ['L', 'R'].includes(i) ) {
+			mower = changeMowerOrientation(mower, i);
+		}
+		else if (i == 'F') {
+			mower = moveMower(mower, lawn);
+		}
+	})
+
+	return `${mower.x} ${mower.y} ${mower.orientation}`;
+}
+
+
 fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
   if (!err) {
   	newFile = data.split('\n');
