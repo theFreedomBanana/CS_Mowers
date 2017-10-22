@@ -1,6 +1,8 @@
 let fs = require('fs'),
     path = require('path'),    
-    filePath = path.join(__dirname, 'newMowers');
+    filePath = path.join(__dirname, 'newMowers'),
+    mowersList = [],
+		instructionsList = [];
 
 let newFile;
 
@@ -72,6 +74,17 @@ fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
 
   	let lawnPos = newFile.shift().split(' ');
   	let lawn = createLawn(parseInt(lawnPos[0]), parseInt(lawnPos[1]));
+
+		newFile.forEach( (line, index) => {
+			if ( (index % 2) === 0 ) {
+				let mowerPos = newFile[index].split(' ');
+  			mowersList.push( createMower(parseInt(mowerPos[0]), parseInt(mowerPos[1]), mowerPos[2]) );
+			}
+			else {
+				instructionsList.push( newFile[index].split('') );
+			}
+		});
+
   } else {
     console.log(err);
   }
