@@ -9,6 +9,10 @@ let createLawn = (maxX, maxY) => {
 	return {maxX: maxX, maxY: maxY};
 }
 
+let createMower = (x, y, orientation) => {
+	return {x: x, y: y, orientation: orientation};
+}
+
 fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
   if (!err) {
   	newFile = data.split('\n');
