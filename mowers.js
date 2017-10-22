@@ -85,6 +85,7 @@ fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
 			}
 		});
 
+		mowersList.forEach( (mower, index) => console.log(instructMower(mower, lawn, instructionsList[index])) );
   } else {
     console.log(err);
   }
