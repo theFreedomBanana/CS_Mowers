@@ -13,6 +13,23 @@ let createMower = (x, y, orientation) => {
 	return {x: x, y: y, orientation: orientation};
 }
 
+let changeMowerOrientation = (mower, val) => {
+  const ORIENTATIONS = ['N', 'E', 'S', 'W'];
+	let move = (val == 'L' ? -1 : 1);
+
+	if ( ORIENTATIONS.indexOf(mower.orientation) + move < 0) {
+		mower.orientation = 'W';
+	}
+	else if ( ORIENTATIONS.indexOf(mower.orientation) + move > ORIENTATIONS.length - 1) {
+		mower.orientation = 'N';
+	}
+	else {
+		mower.orientation = ORIENTATIONS[ORIENTATIONS.indexOf(mower.orientation) + move];
+	}
+
+	return mower;
+}
+
 fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) => {
   if (!err) {
   	newFile = data.split('\n');
